@@ -1,0 +1,61 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.venv/
+venv/
+env/
+.conda/
+
+.pytest_cache/
+.ipynb_checkpoints/
+
+.DS_Store
+Thumbs.db
+~$*
+
+*.log
+*.tmp
+*.bak
+
+data/raw/
+data/cache/
+tlc_data/
+TLC_data/
+*.parquet
+
+# Manuscript and internal documents
+*.docx
+*.xlsx
+
+# Cache and generated metadata
+cache/
+*.egg-info/
+src/ora.egg-info/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Raw / large data
+data/raw/
+data/cache/
+tlc_data/
+TLC_data/
+*.parquet
+
+# Duplicate archives
+data/taxi_zones/*.zip
+
+# Paper-only assets
+fotos paper/
+
+# Temporary files
+~$*
+*.tmp
+*.bak
+*.log
+
+data/hvfhv/

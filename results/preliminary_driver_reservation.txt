@@ -1,0 +1,15 @@
+﻿metric                              ORA     ablation
+realised_welfare                95.0465     106.1752
+match_rate                       0.6500       0.7667
+pooling_rate                     0.7706       0.9550
+mean_wait_min                    3.1065       3.3311
+p95_wait_min                     4.9200       5.4900
+mean_wait_all_min                7.2500       6.0500
+mean_detour_km                   0.3508       0.5076
+idle_ratio                       0.0000       0.0500
+gini_wait_all                    0.4121       0.4152
+jain_wait_all                    0.6111       0.5932
+gini_earnings                    0.1271       0.0939
+jain_earnings                    0.9296       0.9390
+deficit_pct_of_welfare         -56.6587     -53.8703
+r_max_violation_rate             0.0000       0.2458

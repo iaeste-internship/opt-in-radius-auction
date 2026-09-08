@@ -1,0 +1,18 @@
+name: ora
+
+channels:
+  - conda-forge
+
+# Portable project environment.
+# This intentionally omits Windows-specific build strings and the local
+# C:\\Users\\... prefix from a full `conda env export`.
+dependencies:
+  - python=3.11
+  - numpy>=2.0,<3
+  - pandas>=2.2,<4
+  - matplotlib>=3.8,<4
+  - openpyxl>=3.1,<4
+  - pip
+  - pip:
+      - pulp==3.3.2
+      - pytest>=9,<10
