@@ -35,6 +35,7 @@ FIGSIZE = {
     "passenger_utility_vs_violations": (5.50, 4.10),
     "real_welfare_vs_radius_violations": (5.50, 4.10),
     "real_passenger_utility_vs_violations": (5.50, 4.10),
+    "platform_budget_market_pressure": (4.60, 4.10),
 }
 
 

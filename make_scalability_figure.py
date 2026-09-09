@@ -82,6 +82,13 @@ def load_summary() -> pd.DataFrame:
     return summary
 
 
+STYLES = {
+    "main_wdp_time_s": {"marker": "o", "linestyle": "-"},
+    "payment_overhead_s": {"marker": "s", "linestyle": "--"},
+    "full_clear_time_s": {"marker": "^", "linestyle": ":"},
+}
+
+
 def make_figure(summary: pd.DataFrame) -> None:
     x = summary["n_passengers"].to_numpy(dtype=float)
 
@@ -90,7 +97,18 @@ def make_figure(summary: pd.DataFrame) -> None:
     for stem, label, color in SERIES:
         median = summary[f"{stem}_median"].to_numpy(dtype=float)
         iqr = summary[f"{stem}_iqr"].to_numpy(dtype=float)
-        ax.plot(x, median, marker="o", markersize=4, color=color, label=label)
+        # Clarke-counterfactual and total-clearing curves nearly coincide, so
+        # they need distinct dash patterns and markers to stay separable.
+        style = STYLES[stem]
+        ax.plot(
+            x,
+            median,
+            marker=style["marker"],
+            markersize=4,
+            linestyle=style["linestyle"],
+            color=color,
+            label=label,
+        )
         # Medians with interquartile bands: runtime distributions are skewed by
         # occasional slow solver starts, which distort means and their intervals.
         # The lower edge is clipped because the vertical axis is logarithmic.
@@ -101,7 +119,6 @@ def make_figure(summary: pd.DataFrame) -> None:
     ax.set_yscale("log")
     ax.set_xlabel("Passengers (3:1 passenger/driver ratio)")
     ax.set_ylabel("Runtime (s, log scale)")
-    ax.set_title("Scalability runtime breakdown")
     ax.grid(True, which="both", alpha=0.3)
     ax.legend(loc="upper left")
 
