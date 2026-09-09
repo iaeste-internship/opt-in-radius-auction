@@ -26,6 +26,10 @@ import pandas as pd
 SUMMARY_CSV = Path("results") / "scalability_summary.csv"
 SUMMARY_WORKBOOK = Path("ORA_scalability.xlsx")
 SUMMARY_SHEET = "summary"
+import figure_style
+
+figure_style.apply_ieee_style()
+
 FIGURES_DIR = Path("figures")
 OUTPUT_FILE = FIGURES_DIR / "scalability_runtime_breakdown.png"
 
@@ -81,7 +85,7 @@ def load_summary() -> pd.DataFrame:
 def make_figure(summary: pd.DataFrame) -> None:
     x = summary["n_passengers"].to_numpy(dtype=float)
 
-    fig, ax = plt.subplots(figsize=(6.0, 4.0))
+    fig, ax = plt.subplots(figsize=figure_style.figsize_for("scalability_runtime_breakdown", (6.0, 4.0)))
 
     for stem, label, color in SERIES:
         median = summary[f"{stem}_median"].to_numpy(dtype=float)
@@ -99,7 +103,7 @@ def make_figure(summary: pd.DataFrame) -> None:
     ax.set_ylabel("Runtime (s, log scale)")
     ax.set_title("Scalability runtime breakdown")
     ax.grid(True, which="both", alpha=0.3)
-    ax.legend(loc="upper left", fontsize=8)
+    ax.legend(loc="upper left")
 
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
     fig.tight_layout()

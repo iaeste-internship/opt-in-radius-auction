@@ -8,6 +8,10 @@ import pandas as pd
 
 
 SUMMARY_CSV = Path("results") / "real_radius_sweep_summary.csv"
+import figure_style
+
+figure_style.apply_ieee_style()
+
 FIGURES_DIR = Path("figures")
 
 DPI = 300
@@ -154,7 +158,7 @@ def _annotate_tradeoff_radii(axis, ablation, y_column):
                 xy=((x_05 + x_10) / 2.0, (y_05 + y_10) / 2.0),
                 xytext=(8, 8),
                 textcoords="offset points",
-                fontsize=8,
+                fontsize=figure_style.ANNOTATION_PT,
             )
             skip = {0.5, 1.0}
         else:
@@ -188,7 +192,7 @@ def _annotate_tradeoff_radii(axis, ablation, y_column):
             ),
             xytext=offset,
             textcoords="offset points",
-            fontsize=8,
+            fontsize=figure_style.ANNOTATION_PT,
         )
 
 
@@ -207,7 +211,7 @@ def plot_welfare_and_match_rate(
     fig, axes = plt.subplots(
         nrows=2,
         ncols=1,
-        figsize=(8, 9),
+        figsize=figure_style.figsize_for("real_radius_welfare_match_rate", (8, 9)),
         sharex=True,
     )
 
@@ -294,7 +298,7 @@ def plot_welfare_and_match_rate(
             "Someya",
         )
 
-    match_axis.set_xlabel("Global-radius value used by the ablation (km)")
+    match_axis.set_xlabel("Global radius used by ablation (km)")
     match_axis.set_ylabel("Match rate (%)")
     match_axis.set_title("Match rate")
     match_axis.grid(alpha=0.3)
@@ -320,7 +324,7 @@ def plot_radius_violations(
 ) -> None:
     """Plot pickup-radius violations for the NYC TLC validation."""
 
-    fig, axis = plt.subplots(figsize=(8, 5))
+    fig, axis = plt.subplots(figsize=figure_style.figsize_for("real_radius_violation_rate", (8, 5)))
 
     _horizontal_reference(
         axis,
@@ -359,7 +363,7 @@ def plot_radius_violations(
             "Someya",
         )
 
-    axis.set_xlabel("Global-radius value used by the ablation (km)")
+    axis.set_xlabel("Global radius used by ablation (km)")
     axis.set_ylabel(r"Served passengers beyond true $r_{\max}$ (%)")
     axis.set_title("Pickup-radius violations")
     axis.set_ylim(bottom=0)
@@ -421,7 +425,7 @@ def plot_welfare_vs_violations(
         xy=(ora_violation, ora_welfare),
         xytext=(8, 8),
         textcoords="offset points",
-        fontsize=9,
+        fontsize=figure_style.ANNOTATION_PT,
     )
 
     if not someya.empty:
@@ -442,7 +446,7 @@ def plot_welfare_vs_violations(
             xy=(someya_violation, someya_welfare),
             xytext=(8, 8),
             textcoords="offset points",
-            fontsize=9,
+            fontsize=figure_style.ANNOTATION_PT,
         )
 
     axis.set_xlabel(r"Served passengers beyond true $r_{\max}$ (%)")
@@ -506,7 +510,7 @@ def plot_passenger_utility_vs_violations(
         xy=(ora_violation, ora_utility),
         xytext=(8, 8),
         textcoords="offset points",
-        fontsize=9,
+        fontsize=figure_style.ANNOTATION_PT,
     )
 
     if not someya.empty:
@@ -527,7 +531,7 @@ def plot_passenger_utility_vs_violations(
             xy=(someya_violation, someya_utility),
             xytext=(8, 8),
             textcoords="offset points",
-            fontsize=9,
+            fontsize=figure_style.ANNOTATION_PT,
         )
 
     axis.axhline(0.0, linewidth=1.0, linestyle=":", color="0.35")

@@ -29,6 +29,13 @@ TLC_data/
 *.docx
 *.xlsx
 
+# ...but the archived result workbooks are checked evidence and must be tracked
+!ORA_radius_sweep.xlsx
+!ORA_factorial_ablation.xlsx
+!ORA_heterogeneity.xlsx
+!ORA_market_pressure.xlsx
+!ORA_scalability.xlsx
+
 # Cache and generated metadata
 cache/
 *.egg-info/

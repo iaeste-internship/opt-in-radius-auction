@@ -11,6 +11,10 @@ import pandas as pd
 SUMMARY_CSV = Path("results") / "radius_sweep_summary.csv"
 SUMMARY_WORKBOOK = Path("ORA_radius_sweep.xlsx")
 SUMMARY_SHEET = "summary"
+import figure_style
+
+figure_style.apply_ieee_style()
+
 FIGURES_DIR = Path("figures")
 
 DPI = 300
@@ -160,7 +164,7 @@ def plot_welfare_and_match_rate(
     fig, axes = plt.subplots(
         nrows=2,
         ncols=1,
-        figsize=(8, 9),
+        figsize=figure_style.figsize_for("radius_welfare_match_rate", (8, 9)),
         sharex=True,
     )
 
@@ -244,7 +248,7 @@ def plot_welfare_and_match_rate(
         )
 
     match_axis.set_xlabel(
-        "Global-radius value used by the ablation (km)"
+        "Global radius used by ablation (km)"
     )
     match_axis.set_ylabel("Match rate (%)")
     match_axis.set_title(
@@ -275,7 +279,7 @@ def plot_radius_violations(
 ) -> None:
     """Plot pickup-radius violations across global-radius values."""
 
-    fig, axis = plt.subplots(figsize=(8, 5))
+    fig, axis = plt.subplots(figsize=figure_style.figsize_for("radius_violation_rate", (8, 5)))
 
     for data, label, color in (
         (ora, "ORA", ORA_COLOR),
@@ -316,7 +320,7 @@ def plot_radius_violations(
         )
 
     axis.set_xlabel(
-        "Global-radius value used by the ablation (km)"
+        "Global radius used by ablation (km)"
     )
     axis.set_ylabel(
         r"Served passengers beyond true $r_{\max}$ (%)"
@@ -388,7 +392,7 @@ def plot_welfare_vs_violations(
             ),
             xytext=label_offsets[radius_km],
             textcoords="offset points",
-            fontsize=8,
+            fontsize=figure_style.ANNOTATION_PT,
         )
 
     # ORA is represented by one point because its outcome does not depend
@@ -414,7 +418,7 @@ def plot_welfare_vs_violations(
         xy=(ora_violation, ora_welfare),
         xytext=(8, 8),
         textcoords="offset points",
-        fontsize=9,
+        fontsize=figure_style.ANNOTATION_PT,
     )
 
     # Someya is also a single point: its outcome does not depend on the
@@ -439,7 +443,7 @@ def plot_welfare_vs_violations(
             xy=(someya_violation, someya_welfare),
             xytext=(8, 8),
             textcoords="offset points",
-            fontsize=9,
+            fontsize=figure_style.ANNOTATION_PT,
         )
 
     axis.set_xlabel(
@@ -521,7 +525,7 @@ def plot_passenger_utility_vs_violations(
             ),
             xytext=label_offsets[radius_km],
             textcoords="offset points",
-            fontsize=8,
+            fontsize=figure_style.ANNOTATION_PT,
         )
 
     # ORA is one point: its outcome does not depend on the ablation's radius.
@@ -543,7 +547,7 @@ def plot_passenger_utility_vs_violations(
         ),
         xytext=(8, 8),
         textcoords="offset points",
-        fontsize=9,
+        fontsize=figure_style.ANNOTATION_PT,
     )
 
     if not someya.empty:
@@ -565,7 +569,7 @@ def plot_passenger_utility_vs_violations(
             xy=(someya_violation, someya_utility),
             xytext=(8, 8),
             textcoords="offset points",
-            fontsize=9,
+            fontsize=figure_style.ANNOTATION_PT,
         )
 
     axis.set_xlabel(
